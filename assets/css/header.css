@@ -1,0 +1,25 @@
+header {
+    width: 100%;
+    background-color: rgba(98, 146, 114, 0.384);
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+header nav {
+    margin-bottom: 10px;
+    margin: 0 auto;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+header nav ul li a {
+    color: rgb(31, 27, 27);
+}
+
+header nav ul li a:hover {
+    color: #55665c;
+}
