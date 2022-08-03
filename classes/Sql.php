@@ -69,10 +69,8 @@ class Sql
             return false;
     }
 
-    // public function __destruct()
-    // {
-    // Verifier si la propriété existe, car s'il y a un fetchAll auparavant, il aura déjà détruit l'objet
-    //         if (isset($this->connexion))
-    //             $this->connexion = null;
-    //     }
+    public function __destruct()
+    {
+        echo $this->connexion . ' détruite.';
+    }
 }
