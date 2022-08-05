@@ -31,4 +31,9 @@ $requeteTest = "INSERT INTO utilisateurs (pseudo, email, mdp) VALUES (:pseudo, :
 if ($toto->insert($requeteTest, $bindArray, true))
     dump($bindArray);
 else
-    echo "Môrche pô";
+    echo "raté";
+
+
+$pdo = new Sql();
+$response = $pdo->select("SELECT COUNT(*) FROM utilisateurs WHERE email='blabla@gmail.com'", true);
+dump($response);

@@ -22,7 +22,7 @@ function inscrireUtilisateur(string $pseudo, string $email, string $mdp): bool
         $bindArray = array(
             "pseudo" => array($pseudo, PDO::PARAM_STR),
             "email" => array($email, PDO::PARAM_STR),
-            "mdp" => array($email, PDO::PARAM_STR)
+            "mdp" => array($mdp, PDO::PARAM_STR)
         );
         $requeteInsc = "INSERT INTO utilisateurs (pseudo, email, mdp) VALUES (:pseudo, :email, :mdp)";
 
