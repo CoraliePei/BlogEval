@@ -44,6 +44,7 @@ if (isset($_POST['frmLogin'])) {
             echo "<script>window.location.replace('http://localhost/Documents/BlogEval')</script>";
         } else {
             echo "Erreur dans votre login/password";
+            require './includes/frmLogin.php';
         }
     }
 } else {
