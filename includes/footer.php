@@ -18,7 +18,7 @@
         </form>
         <div class="informations">
             <a href="index.php?page=cgu">Conditions générales d'utilisation</a><br>
-            <a href="index.php?page=mentionslegales">Mentions légales</a>
+            <a href="index.php?page=ml">Mentions légales</a>
             <p class="copy">&copy; <?php echo date('Y'); ?> - Renard Parsien</p>
         </div>
     </div>
