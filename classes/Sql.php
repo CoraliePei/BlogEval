@@ -19,7 +19,7 @@ class Sql
         }
     }
 
-    public function inserer(string $sql, bool $bind = false, array $bindArray): bool
+    public function insert(string $sql, array $bindArray, bool $bind = false): bool
     {
         if ($bind) {
             $query = $this->connexion->prepare($sql);
@@ -40,7 +40,6 @@ class Sql
         }
     }
 
-
     public function select(string $sql, bool $count = false): array|int
     {
         if (!$count) {
@@ -52,13 +51,13 @@ class Sql
         }
     }
 
-    // public function update(string $sql): bool
-    // {
-    //     if ($this->connexion->exec($sql))
-    //         return true;
-    //     else
-    //         return false;
-    // }
+    public function update(string $sql): bool
+    {
+        if ($this->connexion->exec($sql))
+            return true;
+        else
+            return false;
+    }
 
     public function delete(string $sql): bool
     {
@@ -71,6 +70,5 @@ class Sql
 
     public function __destruct()
     {
-        echo $this->connexion . ' détruite.';
     }
 }
