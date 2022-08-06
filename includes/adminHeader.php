@@ -16,7 +16,9 @@
                 <li><a href="index.php?page=accueil">Accueil</a></li>
                 <li><a href="index.php?page=articles">Articles</a></li>
                 <li><a href="index.php?page=apropos">À propos</a></li>
+                <li><a href="index.php?page=newArticle">Nouvel article</a></li>
                 <li><a href="index.php?page=adminUsers">Gestion des Utilisateurs</a></li>
+
                 <?php
                 if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
                     echo '<li><a href="index.php?page=logout">Déconnexion</a></li>';
