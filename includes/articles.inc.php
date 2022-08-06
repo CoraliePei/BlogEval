@@ -2,27 +2,6 @@
 
 <?php
 
-// require_once 'frmArticles.php';
-
-// if (isset($_POST['frmArticles'])) {
-//     $titre = isset($_POST['titre']) ? htmlentities(trim($_POST['titre'])) : "";
-//     $contenu = isset($_POST['contenu']) ? htmlentities(trim($_POST['contenu'])) : "";
-//     $auteur = isset($_POST['auteur']) ? htmlentities(trim($_POST['auteur'])) : "";
-//     if (verifierAdmin()) {
-//         if (ajouterArticle($titre, $contenu, $auteur)) {
-//             $message = "Article publié";
-//         } else {
-//             $message = "Erreur de publication";
-//         }
-//         echo $message;
-//     }
-// } else {
-//     $titre = $contenu = $auteur = "";
-//     require_once 'frmArticles.php';
-// }
-
-
-
 $connexionCategories = new Sql();
 $requeteCategories = "SELECT * FROM categories";
 $resultatCategories = $connexionCategories->select($requeteCategories);
@@ -36,6 +15,7 @@ for ($i = 0; $i < count($resultatCategories); $i++) {
     $menuCategories .= "</a>";
     $menuCategories .= "</li>";
 }
+$menuCategories .= "<li><a href=\"index.php?page=articles\">Tous les articles</a>";
 $menuCategories .= "</ul>";
 echo $menuCategories;
 
@@ -47,26 +27,37 @@ if (!empty($_GET['id_categorie']) && ctype_digit($_GET['id_categorie'])) {
     $connexionArticlesCate = new Sql();
     $resultatArticles = $connexionArticlesCate->select($requeteArticlesCate);
 
-    $menuArticlesCate = "<ul>";
+    $menuArticlesCate = "<section class=\"wrap\">";
     for ($i = 0; $i < count($resultatArticles); $i++) {
+        $menuArticlesCate .= "<div>";
+        $menuArticlesCate .= "<h2>";
         $menuArticlesCate .= "<a href=\"index.php?page=articles&amp;id_categorie=" . $resultatArticles[$i]['categories_id_categorie'] . "&amp;id_article=" . $resultatArticles[$i]['id_article'] . "\">";
         $menuArticlesCate .= $resultatArticles[$i]['titre'];
         $menuArticlesCate .= "</a>";
-        $menuArticlesCate .= "</li>";
+        $menuArticlesCate .= "</h2>";
+        $menuArticlesCate .= "<p>" . $resultatArticles[$i]['contenu'] . "</p>";
+        $menuArticlesCate .= "<p>Créé le : " . $resultatArticles[$i]['created_at'] . "</p>";
+        $menuArticlesCate .= "</div>";
     }
-    $menuArticlesCate .= "</ul>";
+    $menuArticlesCate .= "</section>";
     echo $menuArticlesCate;
 } else {
     $connexionArticles = new Sql();
     $requeteArticles = $connexionArticles->select("SELECT * FROM articles");
 
-    $menuArticles = "<ul>";
+    $menuArticles = "<section class=\"wrap\">";
     for ($i = 0; $i < count($requeteArticles); $i++) {
+        $menuArticles .= "<div>";
+        $menuArticles .= "<h2>";
         $menuArticles .= "<a href=\"index.php?page=articles&amp;id_article=" . $requeteArticles[$i]['id_article'] . "\">";
         $menuArticles .= $requeteArticles[$i]['titre'];
         $menuArticles .= "</a>";
-        $menuArticles .= "</li>";
+        $menuArticles .= "</h2>";
+        $menuArticles .= "<p>" . $requeteArticles[$i]['contenu'] . "</p>";
+        $menuArticles .= "<p>Créé le : " . $requeteArticles[$i]['created_at'] . "</p>";
+        $menuArticles .= "</div>";
     }
+    $menuArticles .= "</section>";
     $menuArticles .= "</ul>";
     echo $menuArticles;
 }

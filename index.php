@@ -14,7 +14,7 @@ require __DIR__ . '/vendor/autoload.php';
 date_default_timezone_set('Europe/Paris');
 
 if (verifierAdmin())
-    require_once './includes/headerAdmin.php';
+    require_once './includes/adminHeader.php';
 else
     require_once './includes/header.php';
 
