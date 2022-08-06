@@ -1,6 +1,6 @@
 <?php
 
-function verifierUtilisateur($email)
+function verifierEmailUtilisateur($email)
 {
     if ($pdo = new Sql()) {
         $reponse = $pdo->select("SELECT COUNT(*) FROM utilisateurs WHERE email='$email'", true);

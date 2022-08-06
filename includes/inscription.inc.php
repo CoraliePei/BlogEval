@@ -45,7 +45,7 @@ if (isset($_POST['frmInscription'])) {
         require_once './includes/frmInscription.php';
     } else {
         // Vérification de l'inscription préalable ou non de l'utilisateur
-        if (verifierUtilisateur($email)) {
+        if (verifierEmailUtilisateur($email)) {
             // La fonction verifierUtilisateur() renvoie vrai (il y a déjà une ligne avec cette adresse), pas de traitement
             echo "Vous êtes déjà inscrit";
         } else {
