@@ -41,6 +41,6 @@
                                     echo $errors['statut'];
                                 } ?></span>
 
-            <input type="submit" name="frmArticle" value="Ajouter un New Post !">
+            <input type="submit" name="frmArticle" value="Ajouter un nouvel article">
         </form>
     </section>

@@ -23,7 +23,7 @@ echo $menuCategories;
 if (!empty($_GET['id_categorie']) && ctype_digit($_GET['id_categorie'])) {
     $id_categorie = $_GET['id_categorie'];
 
-    $requeteArticlesCate = "SELECT * FROM articles INNER JOIN articles_has_categories ON articles.id_article = articles_has_categories.articles_id_article WHERE categories_id_categorie = $id_categorie ORDER BY created_at DESC";
+    $requeteArticlesCate = "SELECT * FROM articles INNER JOIN articles_has_categories ON articles.id_article = articles_has_categories.articles_id_article WHERE categories_id_categorie = $id_categorie, statut = 'publish' ORDER BY created_at DESC";
     $connexionArticlesCate = new Sql();
     $resultatArticles = $connexionArticlesCate->select($requeteArticlesCate);
 
@@ -37,6 +37,11 @@ if (!empty($_GET['id_categorie']) && ctype_digit($_GET['id_categorie'])) {
         $menuArticlesCate .= "</h2>";
         $menuArticlesCate .= "<p>" . $resultatArticles[$i]['contenu'] . "</p>";
         $menuArticlesCate .= "<p>Créé le : " . $resultatArticles[$i]['created_at'] . "</p>";
+        if (verifierAdmin() || verifierRedacteur()) {
+            $menuArticlesCate .= "<a href=\"index.php?page=articlesEdit&amp;id_article=" . $resultatArticles[$i]['id_article'] . "\">Editer</a>";
+            $menuArticlesCate .= " | ";
+            $menuArticlesCate .= "<a href=\"index.php?page=articlesSuppr&amp;id_article=" . $resultatArticles[$i]['id_article'] . "\">Supprimer</a>";
+        }
         $menuArticlesCate .= "</div>";
     }
     $menuArticlesCate .= "</section>";
@@ -55,6 +60,11 @@ if (!empty($_GET['id_categorie']) && ctype_digit($_GET['id_categorie'])) {
         $menuArticles .= "</h2>";
         $menuArticles .= "<p>" . $requeteArticles[$i]['contenu'] . "</p>";
         $menuArticles .= "<p>Créé le : " . $requeteArticles[$i]['created_at'] . "</p>";
+        if (verifierAdmin() || verifierRedacteur()) {
+            $menuArticles .= "<a href=\"index.php?page=articlesEdit&amp;id_article=" . $requeteArticles[$i]['id_article'] . "\">Editer</a>";
+            $menuArticles .= " | ";
+            $menuArticles .= "<a href=\"index.php?page=articlesSuppr&amp;id_article=" . $requeteArticles[$i]['id_article'] . "\">Supprimer</a>";
+        }
         $menuArticles .= "</div>";
     }
     $menuArticles .= "</section>";
