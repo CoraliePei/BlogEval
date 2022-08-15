@@ -51,21 +51,15 @@ class Sql
         }
     }
 
-    public function update(string $sql): bool
-    {
-        if ($this->connexion->exec($sql))
-            return true;
-        else
-            return false;
-    }
 
-    public function delete(string $sql): bool
+    public function delete(string $sql)
     {
-        $resultatDelete = $this->connexion->prepare($sql)->execute();
-        if ($resultatDelete->rowCount() > 0)
-            return true;
-        else
-            return false;
+        // $resultatDelete = 
+        $this->connexion->prepare($sql)->execute();
+        // if ($resultatDelete->rowCount() > 0)
+        //     return true;
+        // else
+        //     return false;
     }
 
     public function __destruct()
