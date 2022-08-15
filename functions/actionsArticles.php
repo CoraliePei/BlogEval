@@ -35,3 +35,11 @@ function validText($er, $data, $key, $min, $max)
     }
     return $er;
 }
+
+function supprimerArticle($id_article)
+{
+    if ($pdo = new Sql()) {
+        $pdo->delete("DELETE FROM articles WHERE articles.id_article = $id_article");
+        return "Article $id_article définitivement supprimé.";
+    }
+}
