@@ -74,7 +74,7 @@ if (verifierAdmin() || verifierRedacteur()) {
     if (!empty($_GET['id_categorie']) && ctype_digit($_GET['id_categorie'])) {
         $id_categorie = $_GET['id_categorie'];
 
-        $requeteArticlesCate = "SELECT * FROM articles INNER JOIN articles_has_categories ON articles.id_article = articles_has_categories.articles_id_article WHERE categories_id_categorie = $id_categorie && statut = 'publish' ORDER BY created_at DESC";
+        $requeteArticlesCate = "SELECT * FROM articles INNER JOIN articles_has_categories ON articles.id_article = articles_has_categories.articles_id_article WHERE categories_id_categorie = $id_categorie && statut = 'publié' ORDER BY created_at DESC";
         $connexionArticlesCate = new Sql();
         $resultatArticles = $connexionArticlesCate->select($requeteArticlesCate);
 
@@ -94,7 +94,7 @@ if (verifierAdmin() || verifierRedacteur()) {
         echo $menuArticlesCate;
     } else {
         $connexionArticles = new Sql();
-        $requeteArticles = $connexionArticles->select("SELECT * FROM articles WHERE statut = 'publish'");
+        $requeteArticles = $connexionArticles->select("SELECT * FROM articles WHERE statut = 'publié'");
 
         $menuArticles = "<section class=\"wrap\">";
         for ($i = 0; $i < count($requeteArticles); $i++) {
