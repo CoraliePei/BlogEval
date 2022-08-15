@@ -1,0 +1,33 @@
+Liste des articles :
+- Afficher les articles "publiés" uniquement pour les visiteurs, utilisateurs et modos inscrits.
+- Différencier cette liste de celle qui affiche les articles non publiés, que les rédac et admin peuvent modifier/mettre en ligne.
+- Les rédacteurs et admin ont accès à l'édition et suppression, mettre une conditon de session role pour l'affichage du bouton, et sécuriser de la même manière dans la fonction d'édition et de suppression
+Edition : GETid article, formulaire avec champs pré rempli par le contenu, le nouveau contenu reste en mémoire dans le formulaire pour le maintenir affiché si les conditions de validation ne sont pas respectées, sinon post modifié avec new Sql -> update
+UPDATE articles SET titre = :titre, (...) modified_at = NOW() WHERE id = :id 
+
+Suppression :
+Lien sécurisé pour rédac admin comme l'édition, renvoie vers une page qui lance la fonction unpublishArticle() dans laquelle se trouvera l'update statut publié -> brouillon.
+Sur la page de suppression -> message renvoyé "Vous venez de mettre hors ligne l'article -titre-", et bouton annuler qui condiendra la fonction inverse
+Pour la page des articles : si l'article est publié, afficher le bouton "Suppr", si l'article est en brouillon, afficher "Mettre en ligne"
+
+Inscription : 
+Insérer l'envoi de mail quand l'inscription est validée
+
+Page de gestion des utilisateurs :
+Tableau avec requête select * utilisateurs, qui affiche toutes les informations connues, et un bouton select options avec une requête qui liste les rôles disponibles, et qui offre la possibilité à l'admin de faire un update rôle sur l'utilisateur en question.
+Bouton delete user, qui envoie potentiellement un mail à la personne concernée et/ou qui affiche un message de bannissement à la tentative de connexion. Pour cetet dernière solution il me semblerait que je doive ajouter une colonne dans mon tableau utilisateur pour leur 'état', afin de ne pas le supprimer de la bdd directement.
+
+utilisateurs_has_articles :
+Faire le lien entre les utilisateurs et les articles postés, dans le formulaire d'inscription. Il manque le fait de récupérer l'utilisateur actuellement, il doit pouvoir se récupérer avec sa session
+
+Articles : 
+Ajouter les commentaires
+- Formulaire de comm non visible pour les visiteurs, les relier à l'article concerné et à l'utilisateur qui commente.
+- Liste des commentaires et réponses aux commentaires visibles par tout le monde
+- Bouton modif delete visible et accessible par les modo/rédac/admin. Mettre une condition de role si role = moderateur, impossible de modif etc
+
+Ajouter les avis 
+- Possibilité de mettre une note de 1 à 5 étoiles, (système de clic sur des cases nummérotées de 1 à 5 qui récupèrent la note) si utilisateur inscrit minimum
+- Select * avis puis fonction pour calculer la somme/nbr d'avis, affichage de ce résultat sous l'article pour les rédacs et admin
+
+Relier le formulaire de contact
